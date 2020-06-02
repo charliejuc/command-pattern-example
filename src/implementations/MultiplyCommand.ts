@@ -2,7 +2,7 @@ import { ICommand } from '@/interfaces/ICommand'
 
 export class MultiplyCommand implements ICommand {
     private readonly multiplier: number
-    private result: number = 0
+    private result: number | null = null
 
     constructor(multiplier: number) {
         this.multiplier = multiplier
@@ -19,7 +19,7 @@ export class MultiplyCommand implements ICommand {
     undo(): number {
         this.canBeUndo()
 
-        return this.result / this.multiplier
+        return this.result ?? 0 / this.multiplier
     }
 
     private canBeExecuted(): void {
@@ -30,11 +30,11 @@ export class MultiplyCommand implements ICommand {
 
     private canBeUndo(): void {
         if (!this.isExecuted()) {
-            throw new Error('Command can be executed before undo')
+            throw new Error('Command must be executed before undo')
         }
     }
 
     private isExecuted(): boolean {
-        return this.result !== 0
+        return this.result !== null
     }
 }

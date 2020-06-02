@@ -20,10 +20,13 @@ commands.unshift(multiplyCommand)
 console.log('EXECUTED', value)
 
 // value = multiplyCommand.undo(value)
-for (const command of commands) {
+const _commands = [...commands]
+for (const command of _commands) {
     value = command.undo()
+
+    commands.splice(0, 1)
 
     console.log('UNDONE LOOP', value)
 }
 
-console.log('UNDONE', value)
+console.log(commands)
