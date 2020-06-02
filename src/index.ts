@@ -14,9 +14,7 @@ value = multiplyCommand.execute(value)
 commands.unshift(multiplyCommand)
 
 multiplyCommand = new MultiplyCommand(multiplier)
-commands.unshift(multiplyCommand)
-
-multiplyCommand = new MultiplyCommand(multiplier)
+value = multiplyCommand.execute(value)
 commands.unshift(multiplyCommand)
 
 console.log('EXECUTED', value)
